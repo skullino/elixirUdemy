@@ -17,7 +17,6 @@ defmodule Cards do
   end
 
   def deal(deck, hand_size) do
-    deck = shuffle(deck)
     Enum.split(deck, hand_size)
   end
 
@@ -33,5 +32,11 @@ defmodule Cards do
       :ok -> :erlang.binary_to_term binary
       :error -> "That file does not exist"
     end
+  end
+
+  def create_hand(hand_size) do
+    Cards.create_deck
+    |> Cards.shuffle
+    |> Cards.deal(hand_size)
   end
 end
